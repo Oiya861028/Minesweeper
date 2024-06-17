@@ -1,7 +1,9 @@
 package Minesweeper;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.io.Serial;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import static Minesweeper.MineSweeperConstants.ROWS;
 import static Minesweeper.MineSweeperConstants.COLS;
@@ -131,10 +133,20 @@ public class GameBoardPanel extends JPanel {
                 // else plant a flag.
                 // ......
                 if (!sourceCell.isFlagged) {
-                    sourceCell.setText(">");
+                    try {
+                        Image img = ImageIO.read(getClass().getResource("Minesweeperflag.png"));
+                        sourceCell.setIcon(new ImageIcon(img));
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
                 }
                 else {
-                    sourceCell.setText("");
+                    try {
+                        Image img = ImageIO.read(getClass().getResource("blank image.png"));
+                        sourceCell.setIcon(new ImageIcon(img));
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
                 }
             }
 
